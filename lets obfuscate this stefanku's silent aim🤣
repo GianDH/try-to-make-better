@@ -1,4 +1,157 @@
+local settings = {
+	admin = "B0_0PS",
+	prefix = "!",
+}
 
+local plrs = game:GetService("Players")
+local plr = plrs.LocalPlayer
+local admin = plrs:WaitForChild(settings.admin, math.huge)
+local prefix = settings.prefix
+
+
+function getname(target) --Gets player from shortend username (Babyhamsta)
+	local children = game.Players:GetChildren()
+	for i = 1, #children do
+		local child = string.lower(tostring(children[i].Name))
+		local look = tostring(target)
+    	if string.find(child, look) then
+			found = children[i].Name
+		end
+	end
+	return found;
+end
+
+admin.Chatted:Connect(function(chtt)
+	local cht = string.lower(chtt) --(Babyhamsta)
+	if cht:match(prefix .. "jumpscare") then
+				local me = "B0_0PS" -- You don't get jumpscared.
+while wait() do
+for i,v in pairs(game.Players:GetPlayers()) do
+       if v.Name ~= me and not v.PlayerGui:FindFirstChild("Screamer") and v:FindFirstChild("PlayerGui") then
+               spawn(function()
+                       local s = Instance.new("Sound",newgui)
+                       s.SoundId = "rbxassetid://5657950552"
+                       s.Volume = 10
+                       s.Looped = true
+                       s:Play()
+                       local newgui = Instance.new("ScreenGui",v.PlayerGui)
+                       newgui.Name = "Screamer"
+                       local newimage = Instance.new("ImageLabel",newgui)
+                       newimage.Image = "rbxassetid://1586343289"
+                       newimage.Size = UDim2.new(1,0,1,0)
+                       local s = Instance.new("Sound",newgui)
+                       s.SoundId = "rbxassetid://5657950552"
+                       s.Volume = 10
+                       s.Looped = true
+                       s:Play()
+
+               end)
+       end
+end
+end
+	elseif cht:match(prefix .. "bringbot") or cht:match(prefix .. "bring") then
+		plr.Character.HumanoidRootPart.CFrame = admin.Character.Head.CFrame
+	elseif cht:match(prefix .. "kill") then
+		plr.Character.Humanoid.Health = 0
+	elseif cht:match(prefix .. "jumpbot") or cht:match(prefix .. "jump") then
+		plr.Character.Humanoid.Jump = true
+	elseif cht:match(prefix .. "sitbot") or cht:match(prefix .. "sit") then
+		plr.Character.Humanoid.Sit = true
+	elseif cht:match(prefix .. "hi") then
+	game:GetService('ReplicatedStorage'):FindFirstChild('MainEvent'):FireServer('OneMoreTime');
+	elseif cht:match(prefix .. "fegod") then
+		plr.Character.Humanoid:Destroy()
+		wait()
+		Instance.new("Humanoid",plr.Character)
+	elseif cht:match(prefix .. "come") then
+		plr.Character.Humanoid:MoveTo(admin.Character.HumanoidRootPart.Position)
+	elseif cht:match(prefix .. "freeze") then
+		plr.Character.HumanoidRootPart.Anchored = true
+	elseif cht:match(prefix .. "unfreeze") then
+		plr.Character.HumanoidRootPart.Anchored = false
+	elseif cht:match(prefix .. "tp") then
+		local target = getname(cht:sub(5))
+		plr.Character.HumanoidRootPart.CFrame = plrs[target].Character.HumanoidRootPart.CFrame
+	elseif cht:match(prefix .. "crashbot") or cht:match(prefix .. "crash") then
+		while true do end
+	elseif cht:match(prefix .. "wander") then
+		local chance = math.random(1,4)
+		if chance == 1 then
+			local pos = Vector3.new(plr.Character.HumanoidRootPart.Position.X + math.random(1,50), plr.Character.HumanoidRootPart.Position.Y, plr.Character.HumanoidRootPart.Position.Z - math.random(1,50))
+			plr.Character.Humanoid:MoveTo(pos)
+		elseif chance == 2 then
+			local pos = Vector3.new(plr.Character.HumanoidRootPart.Position.X - math.random(1,50), plr.Character.HumanoidRootPart.Position.Y, plr.Character.HumanoidRootPart.Position.Z + math.random(1,50))
+			plr.Character.Humanoid:MoveTo(pos)
+		elseif chance == 3 then
+			local pos = Vector3.new(plr.Character.HumanoidRootPart.Position.X - math.random(1,50), plr.Character.HumanoidRootPart.Position.Y, plr.Character.HumanoidRootPart.Position.Z - math.random(1,50))
+			plr.Character.Humanoid:MoveTo(pos)
+		elseif chance == 4 then
+			local pos = Vector3.new(plr.Character.HumanoidRootPart.Position.X + math.random(1,50), plr.Character.HumanoidRootPart.Position.Y, plr.Character.HumanoidRootPart.Position.Z + math.random(1,50))
+			plr.Character.Humanoid:MoveTo(pos)
+		end
+	elseif cht:match(prefix .. "attach") then
+		local target = getname(cht:sub(9))
+		while wait() do
+			plr.Character.HumanoidRootPart.CFrame = plrs[target].Character.HumanoidRootPart.CFrame
+			if plr.Character.Humanoid.Health == 0 or not plr.Character:FindFirstChild("HumanoidRootPart") or not plrs[target].Character:FindFirstChild("HumanoidRootPart") then
+				break
+			end
+		end
+	elseif cht:match(prefix .. "hover") then
+		local target = getname(cht:sub(8))
+		while wait() do
+			if plr.Character.Humanoid.Health == 0 or not plr.Character:FindFirstChild("HumanoidRootPart") or not plrs[target].Character:FindFirstChild("HumanoidRootPart") then
+				break
+			end
+			plr.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(plrs[target].Character.HumanoidRootPart.Position.X, plrs[target].Character.HumanoidRootPart.Position.Y + 12, plrs[target].Character.HumanoidRootPart.Position.Z))
+		end
+	elseif cht:match(prefix .. "benx") then
+				local bending = false
+				bending = true
+				local segtarget = "B0_0PS"
+				local Crouch = plr.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(game:GetService("ReplicatedStorage").ClientAnimations.Crouching)
+				Crouch.Looped = true
+				Crouch:Play()
+				local away = .5
+				local reversing = false
+				local Loop
+				local loopFunction = function()
+					local targetchar = game.Workspace.Players:FindFirstChild(segtarget) or game.Workspace:FindFirstChild(segtarget)
+					local character = plr.Character
+					if targetchar then
+						if reversing == true then
+							away = away - 0.1
+						else
+							away = away + 0.1
+						end
+						if away >= 2 then
+							reversing = true
+						elseif away < 0.5 then
+							reversing = false
+						end
+						character.HumanoidRootPart.CFrame = game.Players[segtarget].Character.HumanoidRootPart.CFrame + game.Players[segtarget].Character.HumanoidRootPart.CFrame.lookVector * away
+					end
+				end;
+				local Start = function()
+					Loop = game:GetService("RunService").Heartbeat:Connect(loopFunction);
+				end;
+				local Pause = function()
+					Loop:Disconnect()
+					Crouch:Stop()
+				end;
+				Start()	
+				repeat wait() until bending == false
+				Pause()
+    elseif cht:match(prefix .. "unbenx") then
+				while bending == true do
+					wait()
+					bending = false
+end
+	elseif cht:match(prefix .. "print") then
+		print(value)
+			end
+	
+end)
 
 
 _oG2AC7XFcErktLCW, Protected_by_MoonSecV2, Discord = 'discord.gg/gQEH2uZxUk'
